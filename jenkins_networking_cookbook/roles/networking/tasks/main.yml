@@ -118,3 +118,20 @@
   when: ec2
   ignore_errors: true
 
+#- name: Update subdomain with Elastic IP
+#  route53:
+#    state: present
+#    zone: "{{  hosted_zone }}"
+#    record: "{{ record_name }}"
+#    type: A
+#    ttl: 7200
+#    value: "{{ eip }}"
+#    wait: yes
+#    profile: "{{ aws_root }}"
+#    region: "{{ aws_region }}"
+
+- name: Open SSH Connection with Remote Host
+  wait_for:
+    host: "{{ eip }}"
+    port: 22
+    state: started

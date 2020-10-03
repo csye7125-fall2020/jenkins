@@ -18,4 +18,6 @@ vpc_security_groups:
         cidr_ip: 0.0.0.0/0
         ports:
           - 22
+hosted_zone: "rajashreejoshi.me"
+record_name: "jenkins.rajashreejoshi.me"
 

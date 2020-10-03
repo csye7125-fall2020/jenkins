@@ -7,9 +7,11 @@
       default: ROOT
       private: no
 
-    - name: eip
-      prompt: "ELASTIC IP"
-      default: 3.215.27.48
-      private: no
+#    - name: eip
+#      prompt: "ELASTIC IP"
+#      default: 3.215.27.48
+#      private: no
   roles:
-    - { role: 'roles/networking', aws_profile: '{{ aws_root }}', elastic_ip: '{{ eip }}' }
+#    - { role: 'roles/networking', aws_profile: '{{ aws_root }}', elastic_ip: '{{ eip }}' }
+#    - { role: 'roles/installation', aws_profile: '{{ aws_root }}' }
+
