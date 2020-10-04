@@ -76,6 +76,10 @@
         from_port: 22
         to_port: 22
         cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
     tags:
       Name: "jenkins_sg"
   register: jenkins_sg
@@ -93,11 +97,11 @@
   ec2:
     state: present
     tenancy: default
-    key_name: aws_ec2
+    key_name: "{{ key_name }}"
     profile: "{{ aws_root }}"
     region: "{{ aws_region }}"
     instance_type: t2.micro
-    image: ami-0817d428a6fb68645
+    image: "{{ ami }}"
     wait: yes
     count: 1
     group_id: "{{ jenkins_sg.group_id }}"
@@ -122,7 +126,7 @@
 #  route53:
 #    state: present
 #    zone: "{{  hosted_zone }}"
-#    record: "{{ record_name }}"
+#    record: "{{ domain_name }}"
 #    type: A
 #    ttl: 7200
 #    value: "{{ eip }}"
@@ -130,8 +134,9 @@
 #    profile: "{{ aws_root }}"
 #    region: "{{ aws_region }}"
 
-- name: Open SSH Connection with Remote Host
-  wait_for:
-    host: "{{ eip }}"
-    port: 22
-    state: started
+- name: Add instance public IP to host group
+  add_host: hostname={{ eip }} groups=ec2hosts
+
+- name: Wait for ssh to come up
+  wait_for: host="{{ eip }}" port=22 delay=10 timeout=300
+
