@@ -27,7 +27,7 @@
 - name: Copy default file to nginx
   become: yes
   copy:
-    src: "{{  default_file_path }}"
+    src: "{{ default_file_path }}"
     dest: /etc/nginx/sites-available/default
     owner: root
     group: root
@@ -40,4 +40,4 @@
   raw: sudo systemctl restart nginx
 
 - name: Configure certbot to install certificate for your domain
-  shell: "certbot --nginx --noninteractive --agree-tos --email {{email_id}} -d jenkins.{{domain_name}}"
+  shell: "sudo certbot --nginx --noninteractive --agree-tos --email {{email_id}} -d jenkins.{{domain_name}}"

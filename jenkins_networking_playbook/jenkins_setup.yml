@@ -4,12 +4,12 @@
   vars_prompt:
     - name: aws_root
       prompt: "AWS ROOT PROFILE NAME"
-      default: ROOT
+      default: profle_name
       private: no
 
     - name: eip
       prompt: "ELASTIC IP"
-      default: 3.215.27.48
+      default: 0.0.0.0
       private: no
   roles:
    - { role: 'roles/networking', aws_profile: '{{ aws_root }}', elastic_ip: '{{ eip }}' }

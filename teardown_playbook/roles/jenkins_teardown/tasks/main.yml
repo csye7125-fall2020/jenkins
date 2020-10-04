@@ -84,6 +84,18 @@
 #    tags:
 #      Name: "jenkins_route_table_{{ vpc.vpcs[0].id }}"
 
+- name: Update subdomain with Elastic IP
+  route53:
+    state: absent
+    zone: "{{  domain_name }}"
+    record: "jenkins.{{ domain_name }}"
+    type: A
+    ttl: 60
+    value: "{{ eip }}"
+    wait: yes
+    profile: "{{ aws_root }}"
+    overwrite: yes
+
 - name: Destroy the VPC
   ec2_vpc_net:
     name: "{{ vpc_name }}"
