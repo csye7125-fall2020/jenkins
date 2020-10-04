@@ -7,7 +7,7 @@
     region: "{{ aws_region }}"
     state: present
     tags:
-      Name: "jenkins-vpc"
+      Name: "{{ vpc_name }}"
     tenancy: default
     dns_hostnames: yes
     dns_support: yes
@@ -48,10 +48,10 @@
 - name: Update the route table in the vpc
   ec2_vpc_route_table:
     state: present
-    lookup: id
+    lookup: idcle
     route_table_id: "{{ jenkins_route_table.route_tables[0].id }}"
     vpc_id: "{{ jenkins_vpc.vpc.id}}"
-    profile: "{{ aws_profile }}"
+    profile: "{{ aws_root }}"
     region: "{{ aws_region }}"
     tags:
       Name: "jenkins_route_table_{{ jenkins_vpc.vpc.id }}"
