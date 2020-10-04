@@ -1,0 +1,4 @@
+/.idea/
+/default
+/jenkins_networking_playbook/extra_vars.json
+*/.travis.yml
