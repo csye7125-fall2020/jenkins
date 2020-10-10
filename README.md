@@ -1,5 +1,42 @@
 # Jenkins
 
+## Team Members:
+1. Rajashree Joshi
+1. Kinnar Kansara
+
+## Run Playbooks
+
+### JSON file for passing parameters
+
+Name this file `extra_vars.json`
+```
+{
+    "key_name":"jenkins_ec2_keypair",
+    "ami":"ami-0817d428a6fb68645",
+    "hosted_zone":"jenkins.example.me",
+    "domain_name":"example.me",
+    "sub_domain_name": "jenkins.example.me",
+    "default_file_path":"/path/to/default",
+    "email_id":"doe.j@northeastern.edu",
+    "tag_value":"jenkins-instance",
+    "aws_root": "root",
+    "eip":"123.123.123.123"
+}
+```
+
+### Build network and setup jenkins playbook
+
+```
+ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook jenkins_networking_playbook/jenkins_setup.yml --extra-vars "@extra_vars.json"
+```
+
+### Tear down network and jenkins playbook
+
+```
+ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook teardown_playbook/teardown.yml --extra-vars "@extra_vars.json"
+```
+
+
 ## Steps to setup Jenkins on EC2 instance with Nginx, Certbot and Let's encrypt
 
 After launching EC2 instance with Ubuntu 18.04, create A record with public ip address of the instance in DNS of desired domain.
