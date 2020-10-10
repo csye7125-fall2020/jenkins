@@ -88,7 +88,7 @@
   route53:
     state: absent
     zone: "{{  domain_name }}"
-    record: "jenkins.{{ domain_name }}"
+    record: "{{ sub_domain_name }}"
     type: A
     ttl: 60
     value: "{{ eip }}"

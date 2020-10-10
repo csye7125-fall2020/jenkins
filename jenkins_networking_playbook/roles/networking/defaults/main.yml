@@ -10,6 +10,9 @@ vpc_subnets:
   private-2:
     cidr: 10.0.2.0/24
     az: "{{ aws_region }}c"
+  private-3:
+    cidr: 10.0.3.0/24
+    az: "{{ aws_region }}a"
 vpc_security_groups:
   - name: ssh
     description: "Open SSH port 22"
