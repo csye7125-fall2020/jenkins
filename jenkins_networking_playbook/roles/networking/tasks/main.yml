@@ -130,7 +130,7 @@
   route53:
     state: present
     zone: "{{  hosted_zone }}"
-    record: "jenkins.{{ domain_name }}"
+    record: "{{ sub_domain_name }}"
     type: A
     ttl: 60
     value: "{{ eip }}"
