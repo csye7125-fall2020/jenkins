@@ -42,8 +42,14 @@
 #     state: present
 #   with_sequence: count={{ create_containers }}
 
-- name: add jenkins to docker user group
-  raw: sudo usermod -aG docker jenkins
+- name: add jenkins to sudo and docker user group
+  raw: sudo usermod -aG sudo,docker jenkins
 
 - name: restart jenkins
+  raw: sudo /etc/init.d/jenkins restart
+
+- name: add jenkins to sudo user group again
+  raw: sudo usermod -aG sudo jenkins
+
+- name: restart jenkins again
   raw: sudo /etc/init.d/jenkins restart
