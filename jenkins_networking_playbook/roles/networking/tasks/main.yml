@@ -104,7 +104,7 @@
     key_name: "{{ key_name }}"
     profile: "{{ aws_root }}"
     region: "{{ aws_region }}"
-    instance_type: t2.micro
+    instance_type: "{{ ec2_instance_type }}"
     image: "{{ ami }}"
     wait: yes
     count: 1
