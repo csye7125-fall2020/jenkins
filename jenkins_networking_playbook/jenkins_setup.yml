@@ -20,3 +20,7 @@
   roles:
     - { role: 'roles/installation', aws_profile: '{{ aws_root }}' }
     - { role: 'roles/install-docker', aws_profile: '{{ aws_root }}' }
+    - { role: 'roles/install-kubectl'}
+    - { role: 'roles/install-kops'}
+    - { role: 'roles/install-helm'}
+    - { role: 'roles/install-helmfile'}
