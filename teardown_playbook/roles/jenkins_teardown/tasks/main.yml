@@ -43,7 +43,7 @@
     tags:
       Name: "jenkins_sg"
 
-- name: Create subnets
+- name: Destroy subnets
   ec2_vpc_subnet:
     state: absent
     region: "{{ aws_region }}"
@@ -55,7 +55,7 @@
       Name: "jenkins_{{ item.value.az }}"
   with_dict: "{{ vpc_subnets }}"
 
-- name: Create Internet Gateway
+- name: Destroy Internet Gateway
   ec2_vpc_igw:
     state: absent
     region: "{{ aws_region }}"
@@ -84,7 +84,7 @@
 #    tags:
 #      Name: "jenkins_route_table_{{ vpc.vpcs[0].id }}"
 
-- name: Update subdomain with Elastic IP
+- name: Remove subdomain with Elastic IP
   route53:
     state: absent
     zone: "{{  domain_name }}"
