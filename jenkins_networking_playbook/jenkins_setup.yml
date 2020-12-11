@@ -24,3 +24,4 @@
     - { role: 'roles/install-kops'}
     - { role: 'roles/install-helm'}
     - { role: 'roles/install-helmfile'}
+    - { role: 'roles/install-azurecli'}
