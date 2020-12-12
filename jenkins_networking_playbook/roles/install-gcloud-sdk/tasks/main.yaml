@@ -1,0 +1,13 @@
+---
+
+- name: Add the Cloud SDK distribution URI as a package source
+  raw: echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+
+# apt-transport-https, ca-certificates and gnupg are required but they're already installed in azurecli role
+
+- name: Import the Google Cloud public key
+  raw: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
+- name: Update and install the Cloud SDK
+  become: yes
+  apt: update_cache=yes name=google-cloud-sdk state=latest
