@@ -25,3 +25,4 @@
     - { role: 'roles/install-helm'}
     - { role: 'roles/install-helmfile'}
     - { role: 'roles/install-azurecli'}
+    - { role: 'roles/install-gcloud-sdk'}
